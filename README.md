@@ -19,5 +19,5 @@ To compile any parts of the code, you will need to install the following to your
 ->collections
 
 # Note
-This project will continue to evolve to improve data visualizations, more ETL development in the works with added code modularity, and have a bigger impact at a global level of audience. 
+This project will continue to evolve to improve data visualizations, more ETL development in the works with added code modularity, and ultimately have a bigger impact to a global audience to increased this crisis awareness.   
 
