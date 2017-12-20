@@ -22,5 +22,4 @@ To compile any parts of the code, you will need to install the following to your
 # Note
 This project will continue to evolve to improve data visualizations, more ETL with added code modularity, and ultimately to increase the refugee crisis awareness using data science to a wider and bigger global audience.   
 
-If you have Jupyter in your machine with added extension to Github, there is a Jupyter file you can download in this project, if you want to see all individual outputs from each section that I executed. 
-->Visualizing Global Refugee Crisis Using Pythonic ETL.ipynb
+
