@@ -1,4 +1,4 @@
-# Visualizing Global Refugee Crisis using Pythonic_ETL
+# Visualizing Global Refugee Crisis using Pythonic ETL
 
 This is my first PyCon 2018 Submission. 
 
