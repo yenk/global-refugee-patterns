@@ -18,6 +18,6 @@ To compile any parts of the code, you will need to install the following to your
 ->pandas
 ->collections
 
-# Other
+# Note
 This project will continue to evolve to improve data visualizations, more ETL development in the works with added code modularity, and have a bigger impact at a global level of audience. 
 
