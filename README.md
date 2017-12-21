@@ -20,7 +20,7 @@ To compile any parts of the code, you will need to install the following to your
 ->csv
 
 # Note
-This project will continue to evolve to improve data visualizations, more ETL with added code modularity, and ultimately to increase the refugee crisis awareness using data science to a wider and bigger global audience.   
+This project will continue to evolve to improve data visualizations, more ETL with code modularity, and ultimately help increased awareness of global refugee crisis at present by using data science to attract a bigger global audience. 
 
 
 There is also a jupyter notebook file you can load if you're using jupyter, if you want to see the sections of code with its corresponding outputs. Also ensure to download the github jupyter extension if you are running it in github. 
