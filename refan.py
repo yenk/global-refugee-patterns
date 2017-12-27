@@ -72,14 +72,14 @@ with open(filename) as file:
 ################
 
 #Using Pandas apply() method to identify unique population type  
-df = pd.read_csv(r'/Users/yenkha/gitworkdirectory/dev/notebooks/unhcr_time_series_population.csv', header=None, low_memory=False)
-# df = pd.read_csv(r'unhcr_time_series_population.csv', header=None, low_memory=False)
+# df = pd.read_csv(r'/Users/yenkha/gitworkdirectory/dev/notebooks/unhcr_time_series_population.csv', header=None, low_memory=False)
+df = pd.read_csv('https://raw.githubusercontent.com/yenk/Visualizing_Global_Refugee_Crisis_Using_Pythonic_ETL/master/unhcr_time_series_population.csv',header=None, low_memory=False)
 # print(list(df.apply(set)[3])) #Population Type is at index[3]
 
 #Alternatively, use dictionary iterator coupled with Pandas to loop through 
 #each of the unique values based on its corresponding keys. 
-for i, item in df.iteritems(): 
-    print(item.unique())
+# for i, item in df.iteritems(): 
+    # print(item.unique())
 
 ##################################
 #Compute Year and Total Population
@@ -109,15 +109,15 @@ def popsum_allyears(by_year):
 ############
 #PLOTTING: bar chart for total population across all years: 1952-2016
 ###########
-dict_allyears = popsum_allyears(by_year)
+# dict_allyears = popsum_allyears(by_year)
 
-plt.bar(range(len(dict_allyears)), dict_allyears.values(), align="center", color='#EE3224')
-plt.xticks(range(len(dict_allyears)), list(dict_allyears.keys()), rotation=90)
+# plt.bar(range(len(dict_allyears)), dict_allyears.values(), align="center", color='#EE3224')
+# plt.xticks(range(len(dict_allyears)), list(dict_allyears.keys()), rotation=90)
 
-plt.title('Total Refugee Population: 1952-2016',fontweight='bold', color='g', fontsize='12')
-plt.xlabel('By Year', fontweight='bold', color='g', fontsize='10')
-plt.ylabel('Total Population Size in Millions',fontweight='bold', color='g', fontsize='10')
-plt.grid(True)
+# plt.title('Total Refugee Population: 1952-2016',fontweight='bold', color='g', fontsize='12')
+# plt.xlabel('By Year', fontweight='bold', color='g', fontsize='10')
+# plt.ylabel('Total Population Size in Millions',fontweight='bold', color='g', fontsize='10')
+# plt.grid(True)
 
 # plt.show()
 
@@ -147,15 +147,15 @@ def popsum(by_year):
 ###################
 
 #creating a bar graph from matplotlib by year and total population
-dict_year = popsum(by_year) #call a popsum function 
+# dict_year = popsum(by_year) #call a popsum function 
 
-plt.bar(range(len(dict_year)), dict_year.values(), align="center", color='#EE3224')
-plt.xticks(range(len(dict_year)), list(dict_year.keys()), rotation=90)
-plt.grid(True)
+# plt.bar(range(len(dict_year)), dict_year.values(), align="center", color='#EE3224')
+# plt.xticks(range(len(dict_year)), list(dict_year.keys()), rotation=90)
+# plt.grid(True)
 
-plt.title('Total Refugee Population: 2007-2016',fontweight='bold', color='g', fontsize='12')
-plt.xlabel('By Year', fontweight='bold', color='g', fontsize='10')
-plt.ylabel('Total Population Size in Millions',fontweight='bold', color='g', fontsize='10')
+# plt.title('Total Refugee Population: 2007-2016',fontweight='bold', color='g', fontsize='12')
+# plt.xlabel('By Year', fontweight='bold', color='g', fontsize='10')
+# plt.ylabel('Total Population Size in Millions',fontweight='bold', color='g', fontsize='10')
 
 # plt.show()
 
@@ -205,35 +205,35 @@ year_country_list = get_country_list(dict_country_count)
 #defining a class using a factory function - mamedtuple 
 latslons = namedtuple('latslons',['lat', 'lon']) 
 
-def geos_country(year_country_list): 
+# def geos_country(year_country_list): 
 
-    #initializing nomatim server with a higher timeout 
-    geolocator=Nominatim(timeout=10)
-    #create a new list to hold the namedtuples
-    geo_country_dict = {}
+#     #initializing nomatim server with a higher timeout 
+#     geolocator=Nominatim(timeout=10)
+#     #create a new list to hold the namedtuples
+#     geo_country_dict = {}
 
-    for country_key in year_country_list:
-    # for origin_key in sorted(dict_origin_count):
-        location = geolocator.geocode(country_key)
-        #if there is a location, output lats and lons into geos
-        if location: 
-            #instantiating class - latslons 
-          geos = latslons(location.latitude, location.longitude)   
-             #retrieving country as dict key and geos for values       
-          geo_country_dict[country_key] = geos 
+#     for country_key in year_country_list:
+#     # for origin_key in sorted(dict_origin_count):
+#         location = geolocator.geocode(country_key)
+#         #if there is a location, output lats and lons into geos
+#         if location: 
+#             #instantiating class - latslons 
+#           geos = latslons(location.latitude, location.longitude)   
+#              #retrieving country as dict key and geos for values       
+#           geo_country_dict[country_key] = geos 
 #     return geo_country_dict 
 # print(geos_country(year_country_list))
 
 
 #Writing geocode to CSV
-geo_country_dict = geos_country(year_country_list)
+# geo_country_dict = geos_country(year_country_list)
 
-#output to CSV files for further analysis to prevent exceeding API calls
-with open('country_latslons2.csv','w') as outfile: 
-  fieldnames = ['country','lats','lons'] 
-  write = csv.DictWriter(outfile, fieldnames=fieldnames)
-  for key, value in geo_country_dict.items(): 
-    write.writerow({'country': key, 'lats': value[0],'lons': value[1]}) 
+# #output to CSV files for further analysis to prevent exceeding API calls
+# with open('country_latslons2.csv','w') as outfile: 
+#   fieldnames = ['country','lats','lons'] 
+#   write = csv.DictWriter(outfile, fieldnames=fieldnames)
+#   for key, value in geo_country_dict.items(): 
+#     write.writerow({'country': key, 'lats': value[0],'lons': value[1]}) 
 
 
 #Reading CSV and writing into a dictionary for mapping
@@ -277,38 +277,38 @@ def top_10_country_map(year_country_list, country_latslons_dict):
 ########################
 
 #Loop through lats/lons csv to genereate (x,y) lists for reading.
-top_10_country_latslons = top_10_country_map(year_country_list, country_latslons_dict)
-
-lats,lons = [],[]
-
-for row in top_10_country_latslons: 
-  # print(row)
-  lats.append(row[0])
-  lons.append(row[1])
-# print(lats,lons)
-
-#mapping lats/lons 
-country_map = Basemap(projection='moll', resolution = 'c', area_thresh=500.0,
-    lat_0=0, lon_0=50)
-
-#drawing coastlines and country boundaries on the map
-country_map.drawcoastlines()
-country_map.drawcountries()
-country_map.fillcontinents(color='beige', lake_color='lightblue')
-country_map.drawmapboundary(fill_color='lightblue')
-
-#defining lats and lons lines: begin, end, apart from np.arrange() 
-country_map.drawmeridians(np.arange(0, 420, 60),color='beige', dashes=[1,3])
-country_map.drawparallels(np.arange(-90, 120, 60),color='beige', dashes=[1,3])
-
-#countries of asylum
-x,y = country_map(lons,lats)
-country_map.plot(x, y, 'g^', color='blue', markersize=6)
-
-
-plt.title('Country of Residence With Highest Total Population From All Refugee Categories: 2007-2016') 
 
 # plt.show()
+# op_10_country_latslons = top_10_country_map(year_country_list, country_latslons_dict)
+
+# lats,lons = [],[]
+
+# for row in top_10_country_latslons: 
+#   # print(row)
+#   lats.append(row[0])
+#   lons.append(row[1])
+# # print(lats,lons)
+
+# #mapping lats/lons 
+# country_map = Basemap(projection='moll', resolution = 'c', area_thresh=500.0,
+#     lat_0=0, lon_0=50)
+
+# #drawing coastlines and country boundaries on the map
+# country_map.drawcoastlines()
+# country_map.drawcountries()
+# country_map.fillcontinents(color='beige', lake_color='lightblue')
+# country_map.drawmapboundary(fill_color='lightblue')
+
+# #defining lats and lons lines: begin, end, apart from np.arrange() 
+# country_map.drawmeridians(np.arange(0, 420, 60),color='beige', dashes=[1,3])
+# country_map.drawparallels(np.arange(-90, 120, 60),color='beige', dashes=[1,3])
+
+# #countries of asylum
+# x,y = country_map(lons,lats)
+# # country_map.plot(x, y, 'g^', color='blue', markersize=6)
+
+
+# plt.title('Country of Residence With Highest Total Population From All Refugee Categories: 2007-2016') 
 
 
 ###################################################################
@@ -346,15 +346,15 @@ def poptypecount_byyear2(by_year):
 #PLOTTING: Using Panda's from_dict() object method 
 #########################
 
-dict_poptype_year = poptypecount_byyear2(by_year)
-print(dict_poptype_year)
+# dict_poptype_year = poptypecount_byyear2(by_year)
+# print(dict_poptype_year)
 
-df = pd.DataFrame.from_dict(dict_poptype_year, orient='columns', dtype=None)
-df.plot(kind='bar', stacked=False)
+# df = pd.DataFrame.from_dict(dict_poptype_year, orient='columns', dtype=None)
+# df.plot(kind='bar', stacked=False)
 
-plt.title('Total Population Type Comparison Across 10 Year Span: 2007-2016')
-plt.ylabel('Population Type in Millions')
-# plt.savefig('refugee_status_plot.png')
+# plt.title('Total Population Type Comparison Across 10 Year Span: 2007-2016')
+# plt.ylabel('Population Type in Millions')
+# # plt.savefig('refugee_status_plot.png')
 # plt.show()
 
 #######################
@@ -384,28 +384,28 @@ def populationtype_count(by_year):
 #total refugee population across 10 year span: 2007 - 2016
 ############################
 
-dict_poptype_count = populationtype_count(by_year)
+# dict_poptype_count = populationtype_count(by_year)
 
-#creating lists to generate a scatter plot from a dictionary
-poptype_data = list(dict_poptype_count.values())
-pop_types = list(dict_poptype_count.keys())
+# #creating lists to generate a scatter plot from a dictionary
+# poptype_data = list(dict_poptype_count.values())
+# pop_types = list(dict_poptype_count.keys())
 
-#initializing axes instance
-# fix, ax = plt.subplots()
-# plt.plot(poptype_data, 'g^', linewidth=3, color='g') #creates a scatter plot
+# #initializing axes instance
+# # fix, ax = plt.subplots()
+# # plt.plot(poptype_data, 'g^', linewidth=3, color='g') #creates a scatter plot
 
-# plt.plot(poptype_data,'r--', color='r') #creates a line plot 
+# # plt.plot(poptype_data,'r--', color='r') #creates a line plot 
 
-#retrieving text labels for plotting 
-labels = ['Internally Displaced','Returned IDPs','Asylum-seekers','Refugees(incl. refugee-like situations','Returnees','Stateless','Others of concern']
+# #retrieving text labels for plotting 
+# labels = ['Internally Displaced','Returned IDPs','Asylum-seekers','Refugees(incl. refugee-like situations','Returnees','Stateless','Others of concern']
 
-x1 = [0,1,2,3,4,5,6]
-ax.set_xticks(x1)
-ax.set_xticklabels(labels, rotation='vertical')
+# x1 = [0,1,2,3,4,5,6]
+# ax.set_xticks(x1)
+# ax.set_xticklabels(labels, rotation='vertical')
 
-# plt.ylabel('Population Type in Millions')
-plt.title('Total Population Type Across Ten Year Span: 2007-2016')
-plt.grid(True)
+# # plt.ylabel('Population Type in Millions')
+# plt.title('Total Population Type Across Ten Year Span: 2007-2016')
+# plt.grid(True)
 
 # plt.show()
 # plt.savefig('total_poptypes_count.png')
@@ -601,9 +601,9 @@ linexy,=poptype_map.plot(x, y, '*', color='red', markersize=6,label='Residence b
 lineab,=poptype_map.plot(a, b, 'g^', color='green', markersize=6,label='Origin by Population Types')
 
 plt.legend(loc='upper center', bbox_to_anchor=(0.5,-0.05),ncol=5,fancybox=True,shadow=True)
-plt.title('Top Ten Global Refugee Populations Based on Refugee(Incl. Refugee-Like Situations) and Asylum-Seeker Types' )
-
-# # plt.show()
+plt.title('Top Ten Global Refugee Populations Based on Refugee(Incl. Refugee-Like Situations) and Asylum-Seeker Types')
+# plt.title('UNHCR: http://popstats.unhcr.org/en/time_series',loc='upper center', bbox_to_anchor=(0.5,-0.05),ncol=5,fancybox=True,shadow=True)
+# plt.show()
 
 # # plt.savefig('TopTenRefugeePop_ResidenceOrigins')
 
