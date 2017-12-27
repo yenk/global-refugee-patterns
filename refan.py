@@ -72,7 +72,6 @@ with open(filename) as file:
 ################
 
 #Using Pandas apply() method to identify unique population type  
-# df = pd.read_csv(r'/Users/yenkha/gitworkdirectory/dev/notebooks/unhcr_time_series_population.csv', header=None, low_memory=False)
 df = pd.read_csv('https://raw.githubusercontent.com/yenk/Visualizing_Global_Refugee_Crisis_Using_Pythonic_ETL/master/unhcr_time_series_population.csv',header=None, low_memory=False)
 # print(list(df.apply(set)[3])) #Population Type is at index[3]
 
