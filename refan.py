@@ -1,7 +1,7 @@
 """
 PyCon 2018 Project Submission
 "Visualizing Global Refugee Crisis using Pythonic ETL"
-Author: Yen Kha
+yen.kha@ruralsourcing.com 
 """
 
 import csv
