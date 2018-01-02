@@ -1,14 +1,16 @@
+
+
 """
 PyCon 2018 Project Submission
 "Visualizing Global Refugee Crisis using Pythonic ETL"
 yen.kha@ruralsourcing.com 
 
-This module is created for all ETL batch processes to do the following 
+This module is created for ETL batch processes to do the following 
 using python built-in data structures: 
 
-->data extraction from UNHRC csv dataset 
-->data loading/input/output from csv 
-->data transformation for visualizations
+->data extraction from UNHRC CSV dataset 
+->data reading/loading/output from geocoding into CSV
+->data transformation for visualizations referencing refan_plots. 
 
 """
 
@@ -18,6 +20,7 @@ import pandas as pd
 
 from geopy.geocoders import Nominatim #openstreetmap API library 
 from geopy.exc import GeocoderTimedOut #manipulate timeout when geocoding compiles
+
 from collections import defaultdict
 from collections import namedtuple
 
@@ -76,7 +79,8 @@ df = pd.read_csv('https://raw.githubusercontent.com/yenk/Visualizing_Global_Refu
 # for i, item in df.iteritems(): 
     # print(item.unique())
 
-##################################
+
+#################################
 #Compute Year and Total Population
 ##################################
 
@@ -101,9 +105,6 @@ def popsum_allyears(by_year):
   return dict_allyears 
 # print(popsum_allyears(by_year))
 
-dict_allyears = popsum_allyears(by_year) #function call to output data for plotting
-# rp.total_refugee_population(dict_allyears) #calling data visualization module 
-
 ############
 #ETL: Dictionary - total population by year beginning 2007-2016 
 #############
@@ -124,9 +125,6 @@ def popsum(by_year):
         # print(dict_year)
   return dict_year
 # print(popsum(by_year))
-
-dict_year = popsum(by_year) 
-# rp.total_10_year_refugee_population(dict_year) #plot ten year refugee population 
 
 #####################################################################################
 #                           COUNTRY ANALYSIS 
@@ -190,7 +188,6 @@ latslons = namedtuple('latslons',['lat', 'lon'])
 #     return geo_country_dict 
 # print(geos_country(year_country_list))
 
-
 #Writing geocode to CSV
 # geo_country_dict = geos_country(year_country_list)
 
@@ -238,9 +235,6 @@ def top_10_country_map(year_country_list, country_latslons_dict):
   return top_10_country_latslons
 # print(top_10_country_map(year_country_list, country_latslons_dict))
 
-top_10_country_latslons = top_10_country_map(year_country_list, country_latslons_dict)
-# rp.country_resid_highest_pop(top_10_country_latslons) #plot countries with highest refugee population 
-
 ###################################################################
 #                      REFUGEE ANALYSIS 
 ####################################################################
@@ -272,9 +266,6 @@ def poptypecount_byyear2(by_year):
   return dict_poptype_year 
 # print(poptypecount_byyear2(by_year))
 
-dict_poptype_year = poptypecount_byyear2(by_year)
-# rp.ten_year_pop_type_comparison(dict_poptype_year) #plot 10 year population type comparison
-
 #######################
 #ETL: Dictionary - Extract data for total Population types and 
 #count across 10 year period 2007-2016
@@ -296,9 +287,6 @@ def populationtype_count(by_year):
           dict_poptype_count[poptype] = count 
   return dict_poptype_count 
 # print(populationtype_count(by_year))
-
-dict_poptype_count = populationtype_count(by_year)
-# rp.total_pop_type_10_span(dict_poptype_count) #pot total refugee population by status over 10 year 
 
 #################
 #Alternative ETL Defaultdict() Function: nested dictionary: Extract data for total Population types and 
@@ -420,15 +408,6 @@ def top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict):
 
 # print(top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict))
 
-#function pertains to country lats/lons
-top_10_country_poptype_latslons = top_10_country_poptype_map(country_poptype_list, poptype_latslons_dict)
-
-#function pertains to origin lats/lons
-top_10_origin_poptype_latslons = top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict)
-
-#plot origin and country of residence by refugee populations 
-# rp.country_origin_pop_types(top_10_country_poptype_latslons,top_10_origin_poptype_latslons) 
-
 #####################
 #Combining origin and country lats and lons  
 #####################
@@ -450,4 +429,5 @@ top_10_origin_poptype_latslons = top_10_origin_poptype_map(origin_poptype_list, 
 #       top_10_origin_poptype_latslons.append(poptype_latslons_dict[origin_poptype])
 #   return(country_poptype_list, origin_poptype_list,poptype_latslons_dict)
 # print(top_10_poptype_map(country_poptype_list, origin_poptype_list,poptype_latslons_dict))
+
 

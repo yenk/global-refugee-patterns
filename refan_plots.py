@@ -3,7 +3,9 @@ PyCon 2018 Project Submission
 "Visualizing Global Refugee Crisis using Pythonic ETL"
 yen.kha@ruralsourcing.com 
 
-This module create data visualizations by calling refan_etl.py module. 
+This module creates all the data visualizations using outputs 
+from refan_etl. 
+
 """
 
 import pandas as pd 
