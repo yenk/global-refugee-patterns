@@ -12,11 +12,11 @@ import csv
 
 ###################
 # Geocoding library
-# note: there are countries where OpenStreetMap 
-# cannot geocode or yield wrong coordinates including
+# note: there were countries that OpenStreetMap 
+# cannot geocode or yield wrong coordinates for the following: 
 # China, Dem. Rep. of the Congo, Eritrea, Iran (Islamic Rep. of),
 # Malaysia, Myanmar, Syrian Arab Rep., and United Kingdom 
-# changes were made accordingly on csv_outfile  
+# corrected coordinates were made on csv_outfile to adjust 
 ###################
 
 # Creating a namedtuple class for geocoding
