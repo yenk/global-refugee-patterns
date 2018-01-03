@@ -1,71 +1,80 @@
-"""
-PyCon 2018 Project Submission
-"Visualizing Global Refugee Crisis using Pythonic ETL"
-yen.kha@ruralsourcing.com 
+###################
+# PyCon 2018 Project Submission
+# "Visualizing Global Refugee Crisis using Pythonic ETL"
+# yen.kha@ruralsourcing.com 
 
-This main module will execute refan_etl and refan_plots. 
+# The main module will compile using the following dependencies:
+# refan_etl for ETL processes
+# geolatslons for geocoding coordinates 
+# refan_plots for data visualizations
+###################
 
-"""
+import refan_etl as re #module for ETL processes
+import refan_plots as rp #module for data visualizations
+import geolatslons as ge #module for geocoding lats and lons 
+import csv 
 
-import refan_etl as re 
-import refan_plots as rp 
-
-
-#Reading CSV and writing into a dictionary for mapping
-country_latslons_dict = {}
-
-with open('country_latslons2.csv', 'r') as infile: 
-  read = csv.reader(infile)
-# print(read)
-  for row in read:
-    country,lat,lon = row 
-    country_latslons_dict[country] = latslons(float(lat),float(lon)) #namedtuple 
-# print(country_latslons_dict)
-
-dict_allyears = popsum_allyears(by_year) #function call to output data for plotting
-rp.total_refugee_population(dict_allyears) #calling data visualization module 
+##############
+# Function call of the master dataset 
+#############
+filename = 'unhcr_time_series_population.csv'
+by_year = re.master_by_year(filename)
 
 ############
-#Function calls to compile ten year refugee population by year beginning 2007-2016 
-#############
-
-dict_year = popsum(by_year) 
-rp.total_10_year_refugee_population(dict_year) #plot ten year refugee population 
+# Function calls to compile data and plot total 
+# refugee population from 1952-2016
+############
+dict_allyears = re.popsum_allyears(by_year)
+# rp.total_refugee_population(dict_allyears) 
 
 ############
-#Function calls to get top 10 countries with highest refugee population from CSV
+# Function calls to compile and plot ten year 
+# refugee population from 2007-2016 
 #############
-year_country_list = top_10_country_year(dict_country_count)
-
-top_10_country_latslons = top_10_country_map(year_country_list, country_latslons_dict) #calling country_latslons2 csv file
-rp.country_resid_highest_pop(top_10_country_latslons) #plot countries with highest refugee population 
+dict_year = re.popsum(by_year) 
+# rp.total_10_year_refugee_population(dict_year) 
 
 ############
-#Function calls to yield 10 year comparison by population type 
+# Function calls to get top 10 countries with highest 
+# refugee population from country_latslons_dict for 2007-2016
 #############
-
-dict_poptype_year = poptypecount_byyear2(by_year)
-rp.ten_year_pop_type_comparison(dict_poptype_year) #plot 10 year population type comparison
-
+poptype_latslons_dict = ge.input_country_latslons('country_latslons2.csv')
+dict_country_count = re.yearcountry(by_year) 
+year_country_top10_list = re.top_10_country_year(dict_country_count) 
+top_10_country_latslons = re.top_10_country_map(year_country_top10_list, poptype_latslons_dict) 
+# rp.country_resid_highest_pop(top_10_country_latslons) 
 
 ############
-#Function calls to output total refugee poulation by status over 10 year
+# Function calls to yield 10 year 
+# comparison by population type 
 #############
-
-dict_poptype_count = populationtype_count(by_year)
-rp.total_pop_type_10_span(dict_poptype_count) #pot total refugee population by status over 10 year 
-
+dict_poptype_year = re.poptypecount_byyear2(by_year)
+# rp.ten_year_pop_type_comparison(dict_poptype_year) 
 
 ############
-#Function calls for origin and country of residence projection map 
+# Function calls to output total refugee 
+# poulation by status over 10 year
 #############
+dict_poptype_count = re.populationtype_count(by_year)
+# rp.total_pop_type_10_span(dict_poptype_count) 
 
-#function pertains to country lats/lons
-top_10_country_poptype_latslons = top_10_country_poptype_map(country_poptype_list, poptype_latslons_dict)
+#############
+# Function calls for origin and country 
+# of residence projection map 
+#############
+# Retrieving the top 10 countries with highest population types 
+dict_poptype_country_count = re.poptypes_country_count(by_year)
+country_poptype_list = re.top_10_poptype_country(dict_poptype_country_count)
 
-#function pertains to origin lats/lons
-top_10_origin_poptype_latslons = top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict)
+# Retrieving the top 10 origins with highest population types 
+dict_poptype_origin_count = re.poptypes_origin_count(by_year)
+origin_poptype_list  = re.top_10_origin_poptype(dict_poptype_origin_count)
 
-#plot origin and country of residence by refugee populations 
-rp.country_origin_pop_types(top_10_country_poptype_latslons,top_10_origin_poptype_latslons) 
+# Geocoding and plot
+top_10_country_poptype_latslons = re.top_10_country_poptype_map(country_poptype_list, poptype_latslons_dict)
+top_10_origin_poptype_latslons = re.top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict)
+# rp.country_origin_pop_types(top_10_country_poptype_latslons,top_10_origin_poptype_latslons) 
+
+
+
 

@@ -383,30 +383,30 @@ def populationtype_count(by_year):
 #total refugee population across 10 year span: 2007 - 2016
 ############################
 
-# dict_poptype_count = populationtype_count(by_year)
+dict_poptype_count = populationtype_count(by_year)
 
-# #creating lists to generate a scatter plot from a dictionary
-# poptype_data = list(dict_poptype_count.values())
-# pop_types = list(dict_poptype_count.keys())
+#creating lists to generate a scatter plot from a dictionary
+poptype_data = list(dict_poptype_count.values())
+pop_types = list(dict_poptype_count.keys())
 
-# #initializing axes instance
-# # fix, ax = plt.subplots()
-# # plt.plot(poptype_data, 'g^', linewidth=3, color='g') #creates a scatter plot
+#initializing axes instance
+fix, ax = plt.subplots()
+plt.plot(poptype_data, 'g^', linewidth=3, color='g') #creates a scatter plot
 
-# # plt.plot(poptype_data,'r--', color='r') #creates a line plot 
+# plt.plot(poptype_data,'r--', color='r') #creates a line plot 
 
-# #retrieving text labels for plotting 
-# labels = ['Internally Displaced','Returned IDPs','Asylum-seekers','Refugees(incl. refugee-like situations','Returnees','Stateless','Others of concern']
+#retrieving text labels for plotting 
+labels = ['Internally Displaced','Returned IDPs','Asylum-seekers','Refugees(incl. refugee-like situations','Returnees','Stateless','Others of concern']
 
-# x1 = [0,1,2,3,4,5,6]
-# ax.set_xticks(x1)
-# ax.set_xticklabels(labels, rotation='vertical')
+x1 = [0,1,2,3,4,5,6]
+ax.set_xticks(x1)
+ax.set_xticklabels(labels, rotation='vertical')
 
-# # plt.ylabel('Population Type in Millions')
-# plt.title('Total Population Type Across Ten Year Span: 2007-2016')
-# plt.grid(True)
+plt.ylabel('Population Type in Millions')
+plt.title('Total Population Type Across Ten Year Span: 2007-2016')
+plt.grid(True)
 
-# plt.show()
+plt.show()
 # plt.savefig('total_poptypes_count.png')
 
 #################
@@ -556,54 +556,54 @@ def top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict):
 #####################
 
 #Create lists of lats/lons for country 
-top_10_country_poptype_latslons = top_10_country_poptype_map(country_poptype_list, poptype_latslons_dict)
+# top_10_country_poptype_latslons = top_10_country_poptype_map(country_poptype_list, poptype_latslons_dict)
 
-clat,clon = [],[]
+# clat,clon = [],[]
 
-for row in top_10_country_poptype_latslons: 
-  # print(row)
-  clat.append(row[0])
-  clon.append(row[1])
-# print(clat,clon)
+# for row in top_10_country_poptype_latslons: 
+#   # print(row)
+#   clat.append(row[0])
+#   clon.append(row[1])
+# # print(clat,clon)
 
-#Create lists of lats/lons for origin
-top_10_origin_poptype_latslons = top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict)
+# #Create lists of lats/lons for origin
+# top_10_origin_poptype_latslons = top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict)
 
-olat,olon = [],[]
+# olat,olon = [],[]
 
-for row in top_10_origin_poptype_latslons: 
-  # print(row)
-  olat.append(row[0])
-  olon.append(row[1])
-# # print(olat,olon)
+# for row in top_10_origin_poptype_latslons: 
+#   # print(row)
+#   olat.append(row[0])
+#   olon.append(row[1])
+# # # print(olat,olon)
 
-# # #defining the map 
+# # # #defining the map 
 
-poptype_map = Basemap(projection='moll', resolution = 'c', area_thresh=500.0,
-    lat_0=0, lon_0=50)
+# poptype_map = Basemap(projection='moll', resolution = 'c', area_thresh=500.0,
+#     lat_0=0, lon_0=50)
 
-#drawing coastlines and country boundaries 
-poptype_map.drawcoastlines()
-poptype_map.drawcountries()
-poptype_map.fillcontinents(color='beige', lake_color='lightblue')
-poptype_map.drawmapboundary(fill_color='lightblue')
+# #drawing coastlines and country boundaries 
+# poptype_map.drawcoastlines()
+# poptype_map.drawcountries()
+# poptype_map.fillcontinents(color='beige', lake_color='lightblue')
+# poptype_map.drawmapboundary(fill_color='lightblue')
 
-#defining lats and lons lines: begin, end, apart from np.arrange() 
-poptype_map.drawmeridians(np.arange(0, 420, 60),color='beige', dashes=[1,3])
-poptype_map.drawparallels(np.arange(-90, 120, 60),color='beige', dashes=[1,3])
+# #defining lats and lons lines: begin, end, apart from np.arrange() 
+# poptype_map.drawmeridians(np.arange(0, 420, 60),color='beige', dashes=[1,3])
+# poptype_map.drawparallels(np.arange(-90, 120, 60),color='beige', dashes=[1,3])
 
-# create plot axes for country and origin
-x,y = poptype_map(clon,clat)
-a,b = poptype_map(olon,olat)
+# # create plot axes for country and origin
+# x,y = poptype_map(clon,clat)
+# a,b = poptype_map(olon,olat)
 
-linexy,=poptype_map.plot(x, y, '*', color='red', markersize=6,label='Residence by Population Types')
-lineab,=poptype_map.plot(a, b, 'g^', color='green', markersize=6,label='Origin by Population Types')
+# linexy,=poptype_map.plot(x, y, '*', color='red', markersize=6,label='Residence by Population Types')
+# lineab,=poptype_map.plot(a, b, 'g^', color='green', markersize=6,label='Origin by Population Types')
 
-plt.legend(loc='upper center', bbox_to_anchor=(0.5,-0.05),ncol=5,fancybox=True,shadow=True)
-plt.title('Top Ten Global Refugee Populations Based on Refugee(Incl. Refugee-Like Situations) and Asylum-Seeker Types')
-# plt.title('UNHCR: http://popstats.unhcr.org/en/time_series',loc='upper center', bbox_to_anchor=(0.5,-0.05),ncol=5,fancybox=True,shadow=True)
-# plt.show()
+# plt.legend(loc='upper center', bbox_to_anchor=(0.5,-0.05),ncol=5,fancybox=True,shadow=True)
+# plt.title('Top Ten Global Refugee Populations Based on Refugee(Incl. Refugee-Like Situations) and Asylum-Seeker Types')
+# # plt.title('UNHCR: http://popstats.unhcr.org/en/time_series',loc='upper center', bbox_to_anchor=(0.5,-0.05),ncol=5,fancybox=True,shadow=True)
+# # plt.show()
 
-# # plt.savefig('TopTenRefugeePop_ResidenceOrigins')
+# # # plt.savefig('TopTenRefugeePop_ResidenceOrigins')
 
 
