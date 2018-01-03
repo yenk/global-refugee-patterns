@@ -11,13 +11,13 @@ Source: UNHCR (The UN Refugee Agency) http://popstats.unhcr.org/en/time_series. 
 
 ## Prerequisites
 To compile any part of the code, you will need to install the following to your machine in python version 3 or higher: 
-*geopy
-*mpl_toolkits for Basemap
-*matplotlib
-*numpy
-*pandas
-*collections
-*csv
+..* geopy
+..* mpl_toolkits for Basemap
+..* matplotlib
+..* numpy
+..* pandas
+..* collections
+..* csv
 
 ## Note
 This project will continue to evolve to improve data visualizations, more ETL with code modularity, and ultimately help increased awareness of global refugee crisis at present by using data science and data engineering to attract a bigger global audience. 
