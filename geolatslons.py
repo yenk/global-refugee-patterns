@@ -12,7 +12,7 @@ import csv
 
 ###################
 # Geocoding library
-# certain countries that cannot be geocoded or yield wrong coordinates 
+# countries that cannot be geocoded or yield wrong coordinates 
 # are corrected on csv_outfile including China, Dem. Rep. of the Congo, 
 # Eritrea, Iran (Islamic Rep. of), Malaysia, Myanmar, 
 # Syrian Arab Rep., and United Kingdom 
