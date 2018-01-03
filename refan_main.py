@@ -4,14 +4,14 @@
 # yen.kha@ruralsourcing.com 
 
 # The main module will compile using the following dependencies:
-# refan_etl for ETL processes
-# geolatslons for geocoding coordinates 
-# refan_plots for data visualizations
+# refan_etl 
+# geolatslons
+# refan_plots 
 ###################
 
 import refan_etl as re #module for ETL processes
 import refan_plots as rp #module for data visualizations
-import geolatslons as ge #module for geocoding lats and lons 
+import geolatslons as ge #module for geocoding
 import csv 
 
 ##############
