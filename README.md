@@ -10,14 +10,8 @@ Focus is heavy on data exploration that includes migratory analysis based on pop
 Source: UNHCR (The UN Refugee Agency) http://popstats.unhcr.org/en/time_series.  The data consists of year, population type, population count, origin and country of asylum. This study specifically focuses on the 10 year span from 2007 - 2016, except for the two refugee categories “asylum-seeking” and “refugee (incl. refugee-like situations)”, for which data is given only for the last 3 years, so the data from 2014 - 2016 is analyzed in more depth. 
 
 ## Prerequisites
-To compile any part of the code, you will need to install the following to your machine in python version 3 or higher: 
-..* geopy
-..* mpl_toolkits for Basemap
-..* matplotlib
-..* numpy
-..* pandas
-..* collections
-..* csv
+To compile any part of the code, you will need to install the following to your machine in python version 3 or higher: geopy, mpl_toolkits for Basemap, 
+matplotlib, numpy, pandas, collections, and csv
 
 ## Note
 This project will continue to evolve to improve data visualizations, more ETL with code modularity, and ultimately help increased awareness of global refugee crisis at present by using data science and data engineering to attract a bigger global audience. 
