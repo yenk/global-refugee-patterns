@@ -14,8 +14,6 @@ from collections import defaultdict
 # ETL processes
 ###################
 
-# filename = 'unhcr_time_series_population.csv'
-
 ######
 # str is the parameter used for converting missing values 
 # from a string to an integer to handle error exceptions

@@ -19,10 +19,6 @@ import pandas as pd
 ##############
 # Function call of the master dataset 
 #############
-# url = "https://raw.githubusercontent.com/yenk/Visualizing_Global_Refugee_Crisis_Using_Pythonic_ETL/master/unhcr_time_series_population.csv"
-# filename = ur.urlopen("https://raw.githubusercontent.com/yenk/Visualizing_Global_Refugee_Crisis_Using_Pythonic_ETL/master/unhcr_time_series_population.csv")
-# filename = ur.urlopen(url)
-# filename = pd.read_csv('https://raw.githubusercontent.com/yenk/Visualizing_Global_Refugee_Crisis_Using_Pythonic_ETL/master/unhcr_time_series_population.csv',header=None, low_memory=False)
 filename = 'unhcr_time_series_population.csv'
 by_year = re.master_by_year(filename)
 
