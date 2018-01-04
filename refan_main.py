@@ -13,12 +13,15 @@ import refan_etl as re #module for ETL processes
 import refan_plots as rp #module for data visualizations
 import geolatslons as ge #module for geocoding
 import csv 
+import urllib 
 
 ##############
 # Function call of the master dataset 
 #############
-filename = 'unhcr_time_series_population.csv'
-by_year = re.master_by_year(filename)
+url = 'https://raw.githubusercontent.com/yenk/Visualizing_Global_Refugee_Crisis_Using_Pythonic_ETL/master/unhcr_time_series_population.csv'
+webpage = urllib.urlopen(url)
+# filename = 'unhcr_time_series_population.csv'
+by_year = re.master_by_year(url)
 
 ############
 # Function calls to compile data and plot total 

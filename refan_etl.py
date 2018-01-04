@@ -102,6 +102,7 @@ def yearcountry(by_year):
   for row in by_year: 
     year = row['Year']
     count = row['Population Count']
+    country = row['Country']
 
     if year >= 2007: 
         if country in dict_country_count: 
