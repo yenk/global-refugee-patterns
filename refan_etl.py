@@ -14,6 +14,8 @@ from collections import defaultdict
 # ETL processes
 ###################
 
+# filename = 'unhcr_time_series_population.csv'
+
 ######
 # str is the parameter used for converting missing values 
 # from a string to an integer to handle error exceptions
@@ -33,7 +35,7 @@ def master_by_year(filename):
   with open(filename) as file: 
     reader = csv.reader(file)
     header_row = next(reader)
-    
+
     for row in reader: 
       year = convert(row[0])
       country = row[1]
@@ -115,6 +117,7 @@ def yearcountry(by_year):
 # dict_country_count is a dictionary where countries are being 
 # extracted into a list
 ######
+
 def get_country_list(dict_country_count): 
   
   year_country_list = [] 
@@ -122,6 +125,7 @@ def get_country_list(dict_country_count):
   for country_key in sorted(dict_country_count): 
     year_country_list.append(country_key)
   return year_country_list
+
 
 ######
 # dict_country_count is a dictionary used to output 
@@ -136,13 +140,18 @@ def top_10_country_year(dict_country_count):
 # year_country_top10_list is a list of the 10 countries as strings 
 # country_latslons_dict is a dictionary of the 10 countries as namedtuples with coordinates 
 ######
-def top_10_country_map(year_country_top10_list, country_latslons_dict):
+# dict_country_count = get_country_list(dict_country_count)
+# year_country_top10_list = top_10_country_year(dict_country_count) 
+
+
+def top_10_country_map(year_country_top10_list, input_latslons_dict):
 
   top_10_country_latslons = []
   for country in year_country_top10_list: 
-    if country in country_latslons_dict: 
-      top_10_country_latslons.append(country_latslons_dict[country])
+    if country in input_latslons_dict: 
+      top_10_country_latslons.append(input_latslons_dict[country])
   return top_10_country_latslons
+# print(top_10_country_map(year_country_top10_list, input_latslons_dict))
 
 ###################
 # Refugee analysis 
@@ -273,27 +282,27 @@ def top_10_poptype_country(dict_poptype_country_count):
 ######
 # ETL to retrieve lats and lons for refugees' country of residence 
 # country_poptype_list is a list of top ten countries as strings 
-# poptype_latslons_dict is a dictionary read from country_latslons2.csv 
+# input_latslons_dict is a dictionary read from country_latslons2.csv 
 ######
-def top_10_country_poptype_map(country_poptype_list, poptype_latslons_dict):
+def top_10_country_poptype_map(country_poptype_list, input_latslons_dict):
   top_10_country_poptype_latslons = []
 
   for country_poptype in country_poptype_list: 
-    if country_poptype in poptype_latslons_dict: 
-      top_10_country_poptype_latslons.append(poptype_latslons_dict[country_poptype])
+    if country_poptype in input_latslons_dict: 
+      top_10_country_poptype_latslons.append(input_latslons_dict[country_poptype])
   return  top_10_country_poptype_latslons
 
 ######
 # ETL to retrieve lats and lons on refugee's origin 
 # origin_poptype_list is a list of top ten origins as strings 
-# poptype_latslons_dict is a dictionary read from country_latslons2.csv 
+# input_latslons_dict is a dictionary read from country_latslons2.csv 
 ######
-def top_10_origin_poptype_map(origin_poptype_list, poptype_latslons_dict):
+def top_10_origin_poptype_map(origin_poptype_list, input_latslons_dict):
   top_10_origin_poptype_latslons = []
 
   for origin_poptype in origin_poptype_list: 
-    if origin_poptype in poptype_latslons_dict: 
-      top_10_origin_poptype_latslons.append(poptype_latslons_dict[origin_poptype])
+    if origin_poptype in input_latslons_dict: 
+      top_10_origin_poptype_latslons.append(input_latslons_dict[origin_poptype])
   return top_10_origin_poptype_latslons
 
 

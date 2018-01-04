@@ -52,7 +52,7 @@ def country_resid_highest_pop(top_10_country_latslons):
     country_map.drawmeridians(np.arange(0, 420, 60),color='beige', dashes=[1,3])
     country_map.drawparallels(np.arange(-90, 120, 60),color='beige', dashes=[1,3])
     x,y = country_map(lons,lats)
-    country_map.plot(x, y, 'g^', color='blue', markersize=6)
+    country_map.plot(x, y, 'g^', color='red', markersize=6)
     plt.title('Country of Residence With Highest Total Population From All Refugee Categories: 2007-2016') 
     plt.show()
 
