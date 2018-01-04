@@ -13,8 +13,6 @@ import refan_etl as re #module for ETL processes
 import refan_plots as rp #module for data visualizations
 import geolatslons as ge #module for geocoding
 import csv 
-# import urllib.request as ur
-import pandas as pd 
 
 ##############
 # Function call of the master dataset 
