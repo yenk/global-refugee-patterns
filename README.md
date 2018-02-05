@@ -1,7 +1,5 @@
 # Visualizing Global Refugee Crisis using Pythonic ETL
 
-This is my first PyCon 2018 submission for this project. 
-
 ## Description
 This project focuses on studying United Nation's global refugee crisis pertaining to migration, refugee populations and demographics. 
 
