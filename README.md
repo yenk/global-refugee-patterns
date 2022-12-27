@@ -1,4 +1,4 @@
-# Visualizing Global Refugee Crisis using Pythonic ETL
+# Global refugee observations
 
 ## Description
 This project focuses on studying United Nation's global refugee crisis pertaining to migration, refugee populations and demographics. 
@@ -12,4 +12,4 @@ To compile any part of the code, you will need to install the following to your 
 matplotlib, numpy, pandas, collections, and csv
 
 ## Note
-This project will continue to evolve to improve data visualizations, more ETL with code modularity, and ultimately help increased awareness of global refugee crisis at present by using data science and data engineering to attract a bigger global audience. 
+This project will continue to evolve to improve data visualizations, better code modularity, and hoping to increase global awareness of refugee crisis at present using data science and data engineering to attract a bigger global audience. 
