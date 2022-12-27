@@ -1,4 +1,4 @@
-# Global refugee observations
+# Global refugee patterns and observatons
 
 ## Description
 This project focuses on studying United Nation's global refugee crisis pertaining to migration, refugee populations and demographics. 
